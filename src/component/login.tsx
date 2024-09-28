@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Box, Button, TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
+import Box from "@mui/material/Box"
 
 const Login: React.FC = () => {
   const userNameRef = useRef<HTMLInputElement>(null);
@@ -9,7 +10,15 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" mt={5}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"   
+      marginLeft="calc(50vw - 370px)"  
+      width="300px"     
+      mt={5}
+    >
       <TextField
         inputRef={userNameRef}
         label="Kullanıcı Adı"
@@ -20,7 +29,7 @@ const Login: React.FC = () => {
       <TextField
         inputRef={passwordRef}
         label="Password"
-        type="password"
+        // type="password"
         variant="outlined"
         fullWidth
         margin="normal"
@@ -36,7 +45,7 @@ const Login: React.FC = () => {
           .then(result => {
             console.log('result :>> ', result);
             if (result.status === 200) {
-              navigate(`/USER/${result.data.namE_SURNAME}`);
+              navigate(`/categories`);
             }
           })
           .catch(err => {
