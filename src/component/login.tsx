@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button, TextField } from '@mui/material';
 import Box from "@mui/material/Box"
+import { positions, width } from '@mui/system';
 
 const Login: React.FC = () => {
   const userNameRef = useRef<HTMLInputElement>(null);
@@ -10,15 +11,9 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"   
-      marginLeft="calc(50vw - 370px)"  
-      width="300px"     
-      mt={5}
-    >
+    <>
+      <Box style={{justifyContent:'center',display:'flex'}}>
+    <Box width='300px' style={{height:'230px',top:'50%', marginTop:'-115px',position:'absolute'}} >
       <TextField
         inputRef={userNameRef}
         label="Kullanıcı Adı"
@@ -42,20 +37,21 @@ const Login: React.FC = () => {
             item1: userNameRef.current?.value,
             item2: passwordRef.current?.value
           })
-          .then(result => {
-            console.log('result :>> ', result);
-            if (result.status === 200) {
-              navigate(`/categories`);
-            }
-          })
-          .catch(err => {
-            console.error('Error:', err);
-          });
+            .then(result => {
+              if (result.status === 200) {
+                navigate(`/categories`);
+              }
+            })
+            .catch(err => {
+              console.error('Error:', err);
+            });
         }}
       >
         Login
       </Button>
+      </Box>
     </Box>
+    </>
   );
 };
 
