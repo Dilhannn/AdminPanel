@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import Login from './component/login';
-import Categories from './component/categories';
+import Login from './pages/login';
+import Categories from './pages/categories';
 
 const App: React.FC = () => (
   <Routes>
