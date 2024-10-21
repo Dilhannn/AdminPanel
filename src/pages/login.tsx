@@ -23,7 +23,7 @@ const Login: React.FC = () => {
       <TextField
         inputRef={passwordRef}
         label="Password"
-        // type="password"
+        type="password"
         variant="outlined"
         fullWidth
         margin="normal"
