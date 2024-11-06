@@ -38,7 +38,7 @@ const Login: React.FC = () => {
           })
             .then(result => {
               if (result.status === 200) {
-                navigate(`/categories`);
+                navigate(`/mainPage`);
               }
             })
             .catch(err => {

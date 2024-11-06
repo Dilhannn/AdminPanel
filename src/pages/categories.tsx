@@ -63,7 +63,7 @@ const categories = () => {
                     variant="contained"
                     color="info"
                     onClick={() => {
-                      navigate(`/productDetails?categoryId=${item.ID}`);
+                      navigate(`/productDetails?categoryId=${item.ID}`)
                     }}
                   >Detay</Button>
                   <Button
