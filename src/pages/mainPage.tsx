@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Grid, Card, CardContent, Typography, Button } from '@mui/material';
+import { Box, Card, CardContent, Typography, Button } from '@mui/material';
+import Grid from '@mui/material/Grid2';
 import { styled } from '@mui/material/styles';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { blue, green, orange } from '@mui/material/colors';
@@ -30,8 +31,7 @@ const MainPage: React.FC = () => {
   return (
     <Box sx={{ flexGrow: 1, padding: 2 }}>
       <Grid container spacing={3}>
-        {/* First Row: 3 Dashboard Cards */}
-        <Grid item xs={12} sm={4}>
+        <Grid size={12}>
           <DashboardCard>
             <CardContent>
               <CardTitle>Total Users</CardTitle>
@@ -42,7 +42,7 @@ const MainPage: React.FC = () => {
             </Button>
           </DashboardCard>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={6} >
           <DashboardCard>
             <CardContent>
               <CardTitle>Active Sessions</CardTitle>
@@ -53,7 +53,7 @@ const MainPage: React.FC = () => {
             </Button>
           </DashboardCard>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid size={6} >
           <DashboardCard>
             <CardContent>
               <CardTitle>Orders Today</CardTitle>
@@ -65,19 +65,8 @@ const MainPage: React.FC = () => {
           </DashboardCard>
         </Grid>
 
-        {/* Second Row: Graph or Stats Section */}
-        <Grid item xs={12}>
-          <Card sx={{ padding: 3, backgroundColor: blue[50], borderRadius: '10px' }}>
-            <Typography variant="h6" sx={{ marginBottom: 2 }}>
-              Recent Activity Graph
-            </Typography>
-            {/* Grafik burada olacak */}
-            {/* Örneğin, Chart.js veya Recharts kullanılabilir */}
-          </Card>
-        </Grid>
-
         {/* Third Row: Quick Actions */}
-        <Grid item xs={12} sm={6}>
+        <Grid size={6}>
           <Card sx={{ padding: 2, backgroundColor: green[50], borderRadius: '10px' }}>
             <Typography variant="h6" sx={{ marginBottom: 2 }}>
               Quick Actions
@@ -94,8 +83,19 @@ const MainPage: React.FC = () => {
           </Card>
         </Grid>
 
+             {/* Second Row: Graph or Stats Section */}
+             <Grid size={6}>
+          <Card sx={{ padding: 3, backgroundColor: blue[50], borderRadius: '10px' }}>
+            <Typography variant="h6" sx={{ marginBottom: 2 }}>
+              Recent Activity Graph
+            </Typography>
+            {/* Grafik burada olacak */}
+            {/* Örneğin, Chart.js veya Recharts kullanılabilir */}
+          </Card>
+        </Grid>
+
         {/* Fourth Row: System Status */}
-        <Grid item xs={12} sm={6}>
+        <Grid size={6}>
           <Card sx={{ padding: 2, backgroundColor: orange[50], borderRadius: '10px' }}>
             <Typography variant="h6" sx={{ marginBottom: 2 }}>
               System Status

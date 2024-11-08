@@ -3,7 +3,7 @@ import axios from "axios"
 import { Product } from "../models/product";
 import { ChangeEvent, useEffect, useState } from "react"
 import { useSearchParams } from 'react-router-dom';
-import { Grid } from "@mui/material";
+import Grid from '@mui/material/Grid2';
 
 const ProductDetails = () => {
   const [productList, setProductList] = useState<Product[]>()
@@ -81,7 +81,7 @@ const ProductDetails = () => {
         </DialogContent>
         <DialogActions>
           <Grid container>
-            <Grid item lg={12} >
+            <Grid size={12} >
               <TextField
                 variant="outlined"
                 value={product?.NAME}
@@ -143,7 +143,7 @@ const ProductDetails = () => {
                 margin="normal"
               />
             </Grid>
-            <Grid item lg={12} >
+            <Grid size={12} >
               <Button onClick={handleClose} color="secondary">
                 İptal
               </Button>

@@ -12,7 +12,7 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
-import { Drawer, List, ListItem, ListItemText } from '@mui/material';
+import { Avatar, Drawer, List, ListItem, ListItemText } from '@mui/material';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -73,8 +73,6 @@ export default function SearchAppBar() {
                     >
                         <MenuIcon />
                     </IconButton>
-
-                    {/* Drawer (Sidebar) */}
                     <Drawer
                         open={open}
                         onClose={() => setOpen(false)}
@@ -89,23 +87,22 @@ export default function SearchAppBar() {
                                 sx={{ bgcolor: "#202531", cursor: 'pointer' }}
                                 onClick={() => {
                                     setOpen(false),
-                                    navigate(`/categories`)
+                                        navigate(`/categories`)
                                 }}
                             >
-                                <CategoryIcon sx={{ color: "white",padding:1 }}/>
+                                <CategoryIcon sx={{ color: "white", padding: 1 }} />
                                 <ListItemText primary="Kategoriler" sx={{ color: "white" }} />
                             </ListItem>
-                            <ListItem sx={{ bgcolor: "#202531",cursor: 'pointer' }}>
-                            <SettingsIcon  sx={{ color: "white",padding:1 }}/>
+                            <ListItem sx={{ bgcolor: "#202531", cursor: 'pointer' }}>
+                                <SettingsIcon sx={{ color: "white", padding: 1 }} />
                                 <ListItemText primary="Settings" sx={{ color: "white" }} />
                             </ListItem>
-                            <ListItem sx={{ bgcolor: "#202531",cursor: 'pointer' }}>
-                                <PersonIcon sx={{ color: "white",padding:1 }}/>
+                            <ListItem sx={{ bgcolor: "#202531", cursor: 'pointer' }}>
+                                <PersonIcon sx={{ color: "white", padding: 1 }} />
                                 <ListItemText primary="Profile" sx={{ color: "white" }} />
                             </ListItem>
                         </List>
                     </Drawer>
-
                     <Typography
                         variant="h6"
                         noWrap
@@ -114,7 +111,7 @@ export default function SearchAppBar() {
                     >
                         ADMIN PANEL
                     </Typography>
-                    <Search>
+                    <Search sx={{marginRight:2}}>
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
@@ -123,6 +120,9 @@ export default function SearchAppBar() {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>
+                    <IconButton>
+                    <Avatar  alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         </Box>
