@@ -3,11 +3,10 @@ import { Box } from "@mui/system"
 import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 import { ChangeEvent, useEffect, useState } from "react"
+import { Category } from "../models/category";
 
 const categories = () => {
-  const [categoryId, setCategoryId] = useState(Number)
-  const [categoryName, setCategoryName] = useState(String)
-  const [categoryState, setCategoryState] = useState(Boolean)
+  const [category, setCategory] = useState<Category>()
   const [categoryList, setCategoryList] = useState([])
   const [open, setOpen] = useState(false)
   const navigate = useNavigate();
@@ -16,9 +15,7 @@ const categories = () => {
     axios.get('http://localhost:35068/api/Category/GetCategoryList').then((result) => {
       setCategoryList(result.data)
     })
-  }
-  )
-
+  },[category])
 
   const handleClose = () => {
     setOpen(false)
@@ -30,6 +27,7 @@ const categories = () => {
         variant="contained"
         color="primary"
         onClick={() => {
+          setCategory({ID:0})
           setOpen(true)
         }}
       >Yeni Kayıt</Button>
@@ -54,9 +52,7 @@ const categories = () => {
                     color="success"
                     onClick={() => {
                       setOpen(true)
-                      setCategoryName(item.NAME)
-                      setCategoryState(item.STATE)
-                      setCategoryId(item.ID)
+                      setCategory(item)
                     }}
                   >Düzenle</Button>
                   <Button
@@ -73,6 +69,7 @@ const categories = () => {
                       axios.delete(`http://localhost:35068/api/Category/Delete?ID=${item.ID}`, {
                       }).then(result => {
                         console.log('result :>> ', result);
+                        setCategory({ID:0})
                       })
                     }}
                   >Sil</Button>
@@ -89,16 +86,20 @@ const categories = () => {
         <DialogActions>
           <TextField
             variant="outlined"
-            value={categoryName}
+            value={category?.NAME}
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              setCategoryName(event.target.value)
+              setCategory((item: any) => ({
+                ...item, NAME: event.target.value
+              }))
             }}
             margin="normal"
           />
           <Checkbox
-            checked={categoryState}
+            checked={category?.STATE}
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              setCategoryState(event.target.checked)
+              setCategory((item: any) => ({
+                ...item, STATE: event.target.checked
+              }))
             }}
 
           />
@@ -107,13 +108,10 @@ const categories = () => {
           </Button>
           <Button
             onClick={() => {
-                axios.post('http://localhost:35068/api/Category/Save', {
-                  ID: categoryId,
-                  NAME: categoryName,
-                  STATE: categoryState
-                }).then(result => {
-                  console.log('result :>> ', result);
-                })            
+              axios.post('http://localhost:35068/api/Category/Save', category)
+                .then(result => {
+                  setCategory(result.data)
+                })
               setOpen(false)
             }}
             color="primary"

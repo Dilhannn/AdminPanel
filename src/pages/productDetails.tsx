@@ -87,7 +87,7 @@ const ProductDetails = () => {
                 value={product?.NAME}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
                   setProduct((item: any) => ({
-                    ...item, NAME: event.target.value
+                     ...item, NAME: event.target.value
                   }));
                 }}
                 margin="normal"
@@ -149,12 +149,9 @@ const ProductDetails = () => {
               </Button>
               <Button
                 onClick={() => {
-                  setProduct((item: any) => ({
-                    ...item, CATEGORY_ID: categoryId
-                  }))
-                  console.log('product :>> ', product);
-                  axios.post('http://localhost:35068/api/Product/Save',product 
-                  
+                  axios.post('http://localhost:35068/api/Product/Save',{
+                    ...product, CATEGORY_ID: categoryId
+                  } 
                   ).then(result => {
                     console.log('result :>> ', result);
                   })
